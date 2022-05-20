@@ -95,8 +95,21 @@ public class CrosswordController {
 	 * @return
 	 */
 	public String evaluateCell(String letter, int num) {
-		
-		return null;
+		String out = "";
+		boolean flag = false;
+		for(int i=0;i<crossword.length && flag==false;i++){
+			for(int j=0;j<crossword[0].length && flag==false;j++){
+				if(crossword[i][j]!=null){
+					if(crossword[i][j].getNumber()==num && crossword[i][j].getLetter().equals(letter)){
+						out = "La letra " + letter + " si esta en la casilla " + num + "\n";
+						flag = true;
+					}else{
+						out = "Lo siento, la letra " + letter + " No esta en la casilla " + num + "\n";
+					}
+				}
+			}
+		}
+		return out;
 	}
 	
 	public String showCrossword() {
