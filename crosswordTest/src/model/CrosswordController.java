@@ -70,8 +70,22 @@ public class CrosswordController {
 	 * @return
 	 */
 	public String getHint(String letter) {
-		
-		return null;
+		String out = "";
+		boolean flag = false;
+		for(int i=0;i<crossword.length && flag==false;i++){
+			for(int j=0;j<crossword[0].length && flag==false;j++){
+				if(crossword[i][j]!=null){
+					if(crossword[i][j].getState()==CellType.CLOSED && crossword[i][j].getLetter().equals(letter)){
+						crossword[i][j].setState(CellType.OPEN);
+						out = "La letra " + letter + " si esta en la casilla " + crossword[i][j].getNumber() + "\n";
+						flag = true;
+					}else{
+						out = "Lo siento, la letra " + letter + " No esta en la casilla " + crossword[i][j].getNumber() + "\n";
+					}
+				}
+			}
+		}
+		return out;
 	}
 	
 	/**
