@@ -20,7 +20,26 @@ public class CrosswordController {
 	 */
 	public void initCrossword(String[][] puzzle) {
 		
-		
+		int row = puzzle.length;
+		int colum = puzzle[0].length;
+
+		crossword = new Cell[row][colum];
+
+		int cont = 1;
+		for(int i=0;i<crossword.length;i++){
+			for(int j=0;j<crossword[0].length;j++){
+				if(crossword[i][j]==null){
+					if(puzzle[i][j].equals(" ")){
+						Cell theCell = new Cell(CellType.BLACK, " ", 0);
+						crossword[i][j]=theCell; 
+					}else{
+						Cell theCell = new Cell(CellType.CLOSED, puzzle[i][j], cont);
+						crossword[i][j] = theCell;
+						cont ++;
+					}
+				}
+			}
+		}
 	}
 	/**
 	 * Method to verify if a crossword puzzle is initialized
